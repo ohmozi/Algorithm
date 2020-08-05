@@ -6,6 +6,11 @@ import java.util.Scanner;
 
 // 컴파일에 순서는 상관없음?
 public class Main_3184 {
+    //  1. 양
+    //
+    //  2. 울타리 안에 양과 늑대
+    //
+    //  3. BFS
     static int r,c;
     static int[][] mmap;
     static boolean[][] visited;

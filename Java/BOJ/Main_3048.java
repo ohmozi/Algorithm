@@ -6,7 +6,11 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main_3048 {
-
+//    1. 개미
+//
+//    2. 좌, 우 그룹이 마주치면 점프함
+//
+//    3. 구현
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());

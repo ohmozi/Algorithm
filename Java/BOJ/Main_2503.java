@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Main_2503 {
+    //  1. 숫자야구
+    //
+    //  2. 시도를 통해 후보 찾기
+    //
+    //  3. 구현, permutation 구현
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int[] arr = {1,2,3,4,5,6,7,8,9};

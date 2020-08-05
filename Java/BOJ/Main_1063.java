@@ -5,7 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main_1063 {
-
+    //  1. 킹
+    //
+    //  2. 킹과 돌이 움직이는 체스판
+    //
+    //  3. 단순구현
     public static void main(String[] args) throws IOException {
         BufferedReader br;
         String[] temps;                 // 스트링 배열

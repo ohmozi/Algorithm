@@ -6,6 +6,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Main_9095 {
+    //  1. 1,2,3 더하기
+    //
+    //  2. 4를 1,2,3의 합으로 나타내는 방법은 총 7가지
+    //
+    //  3. DP
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int test_case = Integer.parseInt(br.readLine());

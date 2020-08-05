@@ -6,6 +6,11 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main_8979 {
+    //  1. 올림픽
+    //
+    //  2. 금, 은, 동 메달로 순위매기기
+    //
+    //  3. Comparator , Comparable 사용해서 비교연산자 구현
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());

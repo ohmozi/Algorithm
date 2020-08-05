@@ -3,10 +3,14 @@ package com.company;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 public class Main_2238 {
+//    1. 경매
+//
+//    2. 중복이 적은 가장 적은 가격을 쓴사람은?
+//
+//    3. 구현
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());

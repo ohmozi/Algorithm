@@ -8,6 +8,11 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main_16948 {
+    //  1. 데스나이트
+    //
+    //  2. 데스나이트가 목적지까지 이동할수있는가? 시간은?
+    //
+    //  3. BFS
     public static int dx[] = {-2, -2, 0, 0, 2, 2};
     public static int dy[] = {-1, 1, -2, 2, -1, 1};
     public static boolean visited[][];

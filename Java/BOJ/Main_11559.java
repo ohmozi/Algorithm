@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
-
+/*
 public class Main_11559 {
 //    1. Puyo Puyo
 //
@@ -81,3 +81,4 @@ public class Main_11559 {
         }
     }
 }
+*/

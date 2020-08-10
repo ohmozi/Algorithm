@@ -88,6 +88,23 @@ public class Main_8979 {
                     .thenComparing(Country::getCopper)
                     .compare(this, c);
         }
+/*
+        // *** 이 방법도 됨
+        골드가 같지않다면 -1이 리턴되면서 골드 내림차순으로 정렬
+        골드가 같다면 은메달 문으로 들어가서 마찬가지
+        실버가 같다면 동메달 문으로 들어가서 마찬가지
+        @Override
+        public int compareTo(Country c) {
+            if(this.gold == c.gold) {
+                if(this.silver == c.silver) {
+                    return c.copper - this.copper;
+                }
+                return c.silver - this.silver;
+            }
+            return c.gold - this.gold;
+        }
+*/
+
 //        @Override
 //        public int compareTo(Country c){        // 내림차순 정렬
 //            if(this.score > c.getScore()){

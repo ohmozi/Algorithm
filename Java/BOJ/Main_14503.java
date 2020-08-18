@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.StringTokenizer;
 
 public class Main_14503 {
     //  1. 로봇 청소기
@@ -13,53 +12,100 @@ public class Main_14503 {
     //  2. 보는 방향이 있고 벽과 빈공간, 얼마나 청소할수있는지
     //
     //  3. 구현, 객체
-    static int[] dx = {-1, 1, 0, 0};
-    static int[] dy = {0, 0, -1, 1};
-    static int direction;
-    static boolean[][] visited;
-    static int[][] mmap;
+    static int[] dx = { -1, 0, 1, 0 };
+    static int[] dy = { 0, 1, 0, -1 };
+    static int N;
+    static int M;
+    static int count = 0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
-        mmap = new int[N][M];
-        visited = new boolean[N][M];
-
-        st = new StringTokenizer(br.readLine());
-        int xLoc = Integer.parseInt(st.nextToken());
-        int yLoc = Integer.parseInt(st.nextToken());
-        direction = Integer.parseInt(st.nextToken());
+        String[] str = br.readLine().split(" ");
+        N = Integer.parseInt(str[0]);
+        M = Integer.parseInt(str[1]);
+        str = br.readLine().split(" ");
+        int start_x = Integer.parseInt(str[0]);
+        int start_y = Integer.parseInt(str[1]);
+        int start_dir = Integer.parseInt(str[2]);
+        int[][] arr = new int[N][M];
 
         for (int i = 0; i < N; i++) {
-            st = new StringTokenizer(br.readLine());
+            str = br.readLine().split(" ");
             for (int j = 0; j < M; j++) {
-                mmap[i][j] = Integer.parseInt(st.nextToken());
+                arr[i][j] = Integer.parseInt(str[j]);
             }
         }
-        bfs(xLoc, yLoc);
-
+        //--------------입력--------------
+        Search(arr, start_x, start_y, start_dir);    //청소 실행 함수
+        Check(arr);    //청소한 칸의 개수를 구함
+        System.out.println(count);
     }
-    public static void bfs(int x, int y){
-        Queue<Loc> q = new LinkedList<>();
-        q.add(new Loc(x, y));
-        mmap[x][y] = 1;
-        while(!q.isEmpty()){
-            Loc loc = q.poll();
+
+    private static void Search(int[][] arr, int start_x, int start_y, int start_dir) {
+        Queue<Dot> q = new LinkedList<Dot>();
+        arr[start_x][start_y] = 9;
+        q.add(new Dot(start_x, start_y, start_dir));
+        while (!q.isEmpty()) {
+            Dot d = q.poll();
+            int currentX = d.x;    //현재 x좌표
+            int currentY = d.y;    //현재 y좌표
+            int currentD = d.dir;    //현재 방향
+            Boolean flags = false;    //4방향이 다 청소돼있거나 벽일 경우를 판단해줌.
+            int nextX;
+            int nextY;
+            int nextD;
+
             for (int i = 0; i < 4; i++) {
-                int mx = loc.x + dx[i];
-                int my = loc.y + dy[i];
+                currentD = (currentD + 3) % 4;    //다음 이동할 방향
+                nextX = currentX + (dx[currentD]);    //다음 이동할 X좌표
+                nextY = currentY + (dy[currentD]);    //다음 이동할 Y좌표
+
+                Dot nextDot = new Dot(nextX, nextY, currentD);
+                if (nextX < 0 || nextY < 0 || nextX >= N || nextY >= M) {
+                    continue;
+                }
+                //다음 이동할 위치가  청소되지 않은 곳이라면 간다.
+                if (arr[nextX][nextY] == 0) {
+                    q.add(nextDot);
+                    arr[nextX][nextY] = 9;
+                    flags = true;
+                    break;
+                }
+            }
+            //4방향다 청소됐거나 벽일 경우에는 후진해야한다.
+            if (!flags) {
+                nextD = (currentD + 2) % 4;
+                nextX = currentX + dx[nextD];
+                nextY = currentY + dy[nextD];
+
+                //만약 후진할 곳이 벽이 아니라면, 이동 그렇지 않다면 종료한다.
+                if (arr[nextX][nextY] != 1) {
+                    arr[nextX][nextY] = 9;
+                    q.add(new Dot(nextX, nextY, currentD));
+                }
             }
         }
     }
 
-    public static class Loc {
-        private int x, y;
-        Loc(int x, int y){
+    private static void Check(int[][] arr) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                if (arr[i][j] == 9)
+                    count++;
+            }
+        }
+    }
+
+    private static class Dot {
+        int x;
+        int y;
+        int dir;
+
+        Dot(int x, int y, int dir) {
             this.x = x;
             this.y = y;
+            this.dir = dir;
         }
     }
 }

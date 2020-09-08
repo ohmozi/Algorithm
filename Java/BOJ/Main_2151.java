@@ -23,33 +23,32 @@ public class Main_2151 {
         // 맵 만들기
         mmap = new char[N][N];
         visited = new boolean[N][N];
+        int[] start = new int[2];   // start 좌표 넣기
+
+        boolean check = true;
         for (int i = 0; i < N; i++) {
             String str = br.readLine();
             for (int j = 0; j < N; j++) {
                 mmap[i][j] = str.charAt(j);
                 if(mmap[i][j] == '*')
                     visited[i][j] = true;
-            }
-        }
-        for (int i = 0; i < N; i++) {
-            boolean flag = false;
-            for (int j = 0; j < N; j++) {
-                if(mmap[i][j] == '#'){
-                    if(i == 0)
-                        BFS(i, j, 2);       // 남쪽방향시작
-                    else if(i == N-1)
-                        BFS(i, j, 0);      // 북쪽방향시작
-                    else if(j == 0)
-                        BFS(i, j, 1);       // 동쪽방향시작
-                    else if(j == N-1)
-                        BFS(i, j, 3);       // 서쪽방향시작
-                    flag = true;
-                    break;
+                if(mmap[i][j] == '#' && check) {
+                    check = false;
+                    start[0] = i;
+                    start[1] = j;
                 }
             }
-            if(flag)
-                break;
         }
+//        System.out.println("y : "+start[0] + " x : "+ start[1]);
+        if(start[0] == 0)
+            BFS(start[0], start[1], 2);       // 남쪽방향시작
+        else if(start[0] == N-1)
+            BFS(start[0], start[1], 0);       // 북쪽방향시작
+        else if(start[1] == 0)
+            BFS(start[0], start[1], 1);       // 동쪽방향시작
+        else if(start[1] == N-1)
+            BFS(start[0], start[1], 3);       // 서쪽방향시작
+
 //        for (int i = 0; i < N; i++) {
 //            for (int j = 0; j < N; j++) {
 //                System.out.print(mmap[i][j]);
@@ -90,7 +89,7 @@ public class Main_2151 {
                 }
                 else
                     queue.add(new Loc(my, mx, curDir, mcount));
-                mmap[my][mx] = mcount;
+//                mmap[my][mx] = mcount;
             }
         }
     }
@@ -105,3 +104,4 @@ public class Main_2151 {
         }
     }
 }
+// 가는 길 와중에 거울을 만나면 도착에 가는 길이 아니더라도 지나친 거울의 개수가 늘어남

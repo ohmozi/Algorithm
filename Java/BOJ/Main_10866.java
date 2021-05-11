@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 // 덱
 
-public class Main_10866 {
+public class Main_10866_next {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
